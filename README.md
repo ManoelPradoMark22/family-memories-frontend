@@ -35,7 +35,7 @@
   ![image](https://github.com/user-attachments/assets/3f3ff74c-aeca-4a96-9f84-8c39637184b6)
 - [x] Theme Toggle
   ![image](https://github.com/user-attachments/assets/beb51fa9-79eb-493d-8c4e-09c5e1eafaae)
-- [x] Responsive application
+- [x] Responsive application <br>
   ![image](https://github.com/user-attachments/assets/4ed53976-662f-4c0c-a368-82d10d4ce269)
 
 # Features Frontend - TO-DO:
