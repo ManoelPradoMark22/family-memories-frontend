@@ -22,13 +22,21 @@
 # Features Developed in Frontend:
 
 - [x] Sign-in (login)
+  ![image](https://github.com/user-attachments/assets/bc78dcaa-73a5-4f7c-a599-699b9527299c)
 - [x] Sign-up (register user)
+  ![image](https://github.com/user-attachments/assets/ee1a4233-c29c-4c65-9203-db8d1afa362e)
 - [x] Sign-out (logout)
+  ![image](https://github.com/user-attachments/assets/26063e9a-bf77-4597-aca3-341ea68439d1)
 - [x] Edit Profile
+  ![image](https://github.com/user-attachments/assets/4379b0be-3930-4e49-91b2-f2e125932323)
 - [x] List Photos (Gallery)
+  ![image](https://github.com/user-attachments/assets/4b8b4682-04c9-4de2-8fcb-d8163b1f3c90)
 - [x] Delete Photo
+  ![image](https://github.com/user-attachments/assets/3f3ff74c-aeca-4a96-9f84-8c39637184b6)
 - [x] Theme Toggle
+  ![image](https://github.com/user-attachments/assets/beb51fa9-79eb-493d-8c4e-09c5e1eafaae)
 - [x] Responsive application
+  ![image](https://github.com/user-attachments/assets/4ed53976-662f-4c0c-a368-82d10d4ce269)
 
 # Features Frontend - TO-DO:
 
