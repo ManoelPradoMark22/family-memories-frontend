@@ -1,11 +1,15 @@
-import { useQuery } from '@tanstack/react-query'
-import { FolderPlus, Pencil, Trash2 } from 'lucide-react'
+import { useMutation, useQuery } from '@tanstack/react-query'
+import { FolderPlus, Trash2 } from 'lucide-react'
 import { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import VisibilitySensor from 'react-visibility-sensor'
+import { toast } from 'sonner'
 
+import { detelePhoto } from '@/api/delete-photo'
 import { getGallery } from '@/api/get-gallery'
+import { ConfirmationDialog } from '@/components/confirmation-dialog'
 import { GridGalleryCard } from '@/components/grid-gallery-card'
+import { Dialog } from '@/components/ui/dialog'
 import { queryClient } from '@/lib/react-query'
 import { CLASS_STYLES, QUERY_KEYS } from '@/utils/constants'
 import { ILoggedUserIdCache } from '@/utils/types'
@@ -87,6 +91,30 @@ export function Gallery() {
     })
   }
 
+  const { mutateAsync, isPending: isPendingDeletion } = useMutation({
+    mutationFn: detelePhoto,
+  })
+
+  const handleSubmitDeletePhoto = async () => {
+    if (!deletePhotoModalIsOpen) {
+      return
+    }
+
+    try {
+      toast.loading('Deleting photo')
+
+      await mutateAsync(deletePhotoModalIsOpen)
+
+      toast.dismiss()
+      toast.success('Photo successfully deleted!')
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (e: any) {
+      toast.dismiss()
+      toast.error(e?.error ?? 'Error deleting photo, please try again.')
+    }
+  }
+
   return (
     <>
       <Helmet title="Gallery" />
@@ -130,6 +158,19 @@ export function Gallery() {
             ))}
         </div>
       </div>
+      <Dialog
+        open={!!deletePhotoModalIsOpen}
+        onOpenChange={handleCloseDeletePhotoModal}
+      >
+        <ConfirmationDialog
+          title="Delete Photo"
+          description="Are you sure you want to delete this photo? It will be removed from all albums."
+          type="destructive"
+          disabled={isPendingDeletion}
+          onCloseFn={handleCloseDeletePhotoModal}
+          confirmationFn={handleSubmitDeletePhoto}
+        />
+      </Dialog>
     </>
   )
 }

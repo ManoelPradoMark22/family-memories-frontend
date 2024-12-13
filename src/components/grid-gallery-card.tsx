@@ -24,7 +24,7 @@ export function GridGalleryCard({
             }`}
           >
             <div className="absolute inset-0 z-10 flex transition duration-200 ease-in hover:opacity-0">
-              <div className="absolute inset-0 opacity-20 md:bg-black"></div>
+              <div className="absolute inset-0 opacity-20 md:bg-accent dark:md:bg-black"></div>
               {title && (
                 <div className="z-10 mx-auto self-center text-sm uppercase tracking-widest text-white">
                   {title}
