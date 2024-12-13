@@ -19,7 +19,7 @@
 
 ---
 
-PS.: I tried my best to finish everything in the 3 days I was given to do this challenge, but since I'm still employed at the current company, this was all I could do in this field.
+PS.: I tried my best to finish everything in the 3 days I was given to do this challenge, but since I'm still employed at the current company, this was all I could do in that time.
 Note: Since the Photo Upload functionality in the Frontend was not integrated with the Backend in time, it is possible to upload the photo for a user:
 
 1. Identify your user's id (if you don't have a user created, create an example one):
