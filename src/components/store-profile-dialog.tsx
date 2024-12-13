@@ -4,8 +4,10 @@ import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
+import { getProfile, IGetProfileResponse } from '@/api/get-profile'
 import { updateProfile } from '@/api/update-profile'
 import { QUERY_KEYS } from '@/utils/constants'
+import { ILoggedUserIdCache } from '@/utils/types'
 
 import { Button } from './ui/button'
 import {
@@ -18,8 +20,6 @@ import {
 } from './ui/dialog'
 import { Input } from './ui/input'
 import { Label } from './ui/label'
-import { getProfile, IGetProfileResponse } from '@/api/get-profile'
-import { ILoggedUserIdCache } from '@/utils/types'
 
 const { GET_PROFILE_KEY, GET_USER_ID_LOGGED_IN } = QUERY_KEYS
 
@@ -36,7 +36,9 @@ type IStoreProfileDialog = {
 export function StoreProfileDialog({ onClose }: IStoreProfileDialog) {
   const queryClient = useQueryClient()
 
-  const loggedUserId: ILoggedUserIdCache = queryClient.getQueryData(GET_USER_ID_LOGGED_IN)
+  const loggedUserId: ILoggedUserIdCache = queryClient.getQueryData(
+    GET_USER_ID_LOGGED_IN,
+  )
 
   const queryFnToUse = loggedUserId?.userId
     ? { queryFn: () => getProfile(loggedUserId.userId) }
@@ -46,7 +48,7 @@ export function StoreProfileDialog({ onClose }: IStoreProfileDialog) {
     queryKey: GET_PROFILE_KEY,
     staleTime: Infinity,
     ...queryFnToUse,
-    enabled: !!loggedUserId?.userId
+    enabled: !!loggedUserId?.userId,
   })
   const {
     register,
@@ -67,18 +69,14 @@ export function StoreProfileDialog({ onClose }: IStoreProfileDialog) {
   function updateProfileCache({
     name,
   }: IStoreProfileSchema): IUpdateProfileCacheReturn {
-    const oldCached = queryClient.getQueryData<IGetProfileResponse>(
-      GET_PROFILE_KEY,
-    )
+    const oldCached =
+      queryClient.getQueryData<IGetProfileResponse>(GET_PROFILE_KEY)
 
     if (oldCached) {
-      queryClient.setQueryData<IGetProfileResponse>(
-        GET_PROFILE_KEY,
-        {
-          ...oldCached,
-          name,
-        },
-      )
+      queryClient.setQueryData<IGetProfileResponse>(GET_PROFILE_KEY, {
+        ...oldCached,
+        name,
+      })
     }
 
     return { previousProfile: oldCached }
@@ -101,8 +99,10 @@ export function StoreProfileDialog({ onClose }: IStoreProfileDialog) {
   })
 
   async function handleUpdateProfile(data: IStoreProfileSchema) {
-    if(!loggedUserId?.userId) { return }
-    
+    if (!loggedUserId?.userId) {
+      return
+    }
+
     try {
       toast.loading('Updating profile')
 
@@ -110,7 +110,7 @@ export function StoreProfileDialog({ onClose }: IStoreProfileDialog) {
 
       await mutateAsync({
         body: { name: data.name },
-        id: loggedUserId.userId
+        id: loggedUserId.userId,
       })
 
       toast.dismiss()

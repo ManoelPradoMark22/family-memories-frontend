@@ -9,7 +9,7 @@ import { QUERY_KEYS } from '@/utils/constants'
 
 const { GET_USER_ID_LOGGED_IN } = QUERY_KEYS
 
-export function AppLayout() {  
+export function AppLayout() {
   const navigate = useNavigate()
 
   useEffect(() => {

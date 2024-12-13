@@ -33,7 +33,7 @@ export function SignUp() {
       name: '',
       email: '',
       birthday: '',
-      password: ''
+      password: '',
     },
   })
 
@@ -47,7 +47,7 @@ export function SignUp() {
         email: data.email,
         name: data.name,
         birthday: data.birthday,
-        password: data.password
+        password: data.password,
       })
 
       toast.success('User successfully registered.', {
@@ -55,6 +55,7 @@ export function SignUp() {
         description: 'Now, login to access Home.',
       })
       navigate(`/sign-in?email=${data.email}`)
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (e: any) {
       toast.error(e?.error ?? 'Error while registering user.')
     }
@@ -92,11 +93,7 @@ export function SignUp() {
           >
             <div className="space-y-2">
               <Label htmlFor="name">Your name</Label>
-              <Input
-                type="text"
-                id="name"
-                {...register('name')}
-              />
+              <Input type="text" id="name" {...register('name')} />
             </div>
 
             <div className="space-y-2">
@@ -119,11 +116,11 @@ export function SignUp() {
             </Button>
 
             <p className="px-6 text-center text-sm leading-relaxed text-muted-foreground">
-                By continuing, you agree to our{' '}
+              By continuing, you agree to our{' '}
               <a href="" className="underline underline-offset-4">
                 Terms of service
               </a>{' '}
-                and{' '}
+              and{' '}
               <a href="" className="underline underline-offset-4">
                 privacy policies
               </a>

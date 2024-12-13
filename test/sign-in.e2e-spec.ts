@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test'
 
 test('sign in successfully', async ({ page }) => {
-  test.setTimeout(10000);
+  test.setTimeout(10000)
   await page.goto('/sign-in', { waitUntil: 'networkidle' })
 
   await page.getByLabel('Your e-mail').fill('manoelprado.aecjr@gmail.com')
@@ -11,9 +11,7 @@ test('sign in successfully', async ({ page }) => {
 
   await page.waitForLoadState('networkidle')
 
-  const toast = page.getByText(
-    'Login Success.',
-  )
+  const toast = page.getByText('Login Success.')
 
   await expect(toast).toBeVisible()
 })

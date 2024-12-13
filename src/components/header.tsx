@@ -1,4 +1,4 @@
-import { Images, GalleryVertical, Camera } from 'lucide-react'
+import { Camera, GalleryVertical, Images } from 'lucide-react'
 
 import { AccountMenu } from './account-menu'
 import { NavLink } from './nav-link'

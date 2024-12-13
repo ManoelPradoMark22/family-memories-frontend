@@ -10,6 +10,6 @@ export interface IUpdateProfileParams {
 }
 
 export async function updateProfile({ body, id }: IUpdateProfileParams) {
-  const { name } = body;
+  const { name } = body
   await api.put(`/user/${id}`, { name })
 }

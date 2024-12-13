@@ -1,5 +1,6 @@
-import { QUERY_KEYS } from '@/utils/constants';
 import { Helmet } from 'react-helmet-async'
+
+import { QUERY_KEYS } from '@/utils/constants'
 
 const { GET_USER_ID_LOGGED_IN } = QUERY_KEYS
 

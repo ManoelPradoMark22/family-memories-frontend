@@ -1,3 +1,6 @@
-export type ILoggedUserIdCache = { 
-  userId: number
-} | null | undefined
+export type ILoggedUserIdCache =
+  | {
+      userId: number
+    }
+  | null
+  | undefined

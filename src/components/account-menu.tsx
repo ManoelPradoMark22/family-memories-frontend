@@ -4,7 +4,9 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { getProfile } from '@/api/get-profile'
+import { queryClient } from '@/lib/react-query'
 import { QUERY_KEYS } from '@/utils/constants'
+import { ILoggedUserIdCache } from '@/utils/types'
 
 import { StoreProfileDialog } from './store-profile-dialog'
 import { Button } from './ui/button'
@@ -18,8 +20,6 @@ import {
   DropdownMenuTrigger,
 } from './ui/dropdown-menu'
 import { Skeleton } from './ui/skeleton'
-import { queryClient } from '@/lib/react-query'
-import { ILoggedUserIdCache } from '@/utils/types'
 
 const { GET_PROFILE_KEY, GET_USER_ID_LOGGED_IN } = QUERY_KEYS
 
@@ -27,7 +27,9 @@ export function AccountMenu() {
   const [isOpen, setIsOpen] = useState(false)
   const navigate = useNavigate()
 
-  const loggedUserId: ILoggedUserIdCache = queryClient.getQueryData(GET_USER_ID_LOGGED_IN)
+  const loggedUserId: ILoggedUserIdCache = queryClient.getQueryData(
+    GET_USER_ID_LOGGED_IN,
+  )
 
   const queryFnToUse = loggedUserId?.userId
     ? { queryFn: () => getProfile(loggedUserId.userId) }
@@ -37,12 +39,12 @@ export function AccountMenu() {
     queryKey: GET_PROFILE_KEY,
     staleTime: Infinity,
     ...queryFnToUse,
-    enabled: !!loggedUserId?.userId
+    enabled: !!loggedUserId?.userId,
   })
 
   const signOutFn = () => {
-    queryClient.clear();
-    navigate('/sign-in', { replace: true });
+    queryClient.clear()
+    navigate('/sign-in', { replace: true })
   }
 
   const handleClose = () => {

@@ -9,7 +9,7 @@ export const getProfileMock = http.get<never, never, IGetProfileResponse>(
       id: 1,
       name: 'Manoel Prado',
       email: 'manoelprado.aecjr@gmail.com',
-      birthday: '1996-03-13'
+      birthday: '1996-03-13',
     })
   },
 )

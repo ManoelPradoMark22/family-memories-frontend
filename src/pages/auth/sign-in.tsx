@@ -1,11 +1,11 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
+import { jwtDecode, JwtPayload as DefaultJwtPayload } from 'jwt-decode'
 import { Helmet } from 'react-helmet-async'
 import { FieldErrors, useForm } from 'react-hook-form'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { toast } from 'sonner'
 import { z } from 'zod'
-import { jwtDecode, JwtPayload as DefaultJwtPayload } from 'jwt-decode';
 
 import { signIn } from '@/api/sign-in'
 import { Button } from '@/components/ui/button'
@@ -25,7 +25,7 @@ const signInForm = z.object({
 type ISignInForm = z.infer<typeof signInForm>
 
 interface JwtPayload extends DefaultJwtPayload {
-  userId: number;
+  userId: number
 }
 
 export function SignIn() {
@@ -50,25 +50,31 @@ export function SignIn() {
 
   async function handleSignIn(data: ISignInForm) {
     try {
-      const jwtToken = await authenticate({ email: data.email, password: data.password })
+      const jwtToken = await authenticate({
+        email: data.email,
+        password: data.password,
+      })
 
-      if(!jwtToken?.data) {
-        toast.error("Error trying to login, please try again", {
+      if (!jwtToken?.data) {
+        toast.error('Error trying to login, please try again', {
           duration: 2000,
         })
-        return;
+        return
       }
-      
-      const decoded = jwtDecode<JwtPayload>(jwtToken.data);
-      const userId = decoded?.userId;  
-      
-      queryClient.setQueryData(GET_USER_ID_LOGGED_IN, { userId } as ILoggedUserIdCache);
+
+      const decoded = jwtDecode<JwtPayload>(jwtToken.data)
+      const userId = decoded?.userId
+
+      queryClient.setQueryData(GET_USER_ID_LOGGED_IN, {
+        userId,
+      } as ILoggedUserIdCache)
 
       toast.success('Login Success.', {
         duration: 4000,
       })
 
       navigate('/')
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (e: any) {
       toast.error(e?.error ?? 'Invalid Credentials')
     }
