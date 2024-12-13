@@ -14,5 +14,5 @@
 
 ## Run e2e tests
 - npm run e2e
-or
+- /or/
 - npm run e2e:ui
