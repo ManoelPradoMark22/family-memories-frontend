@@ -41,6 +41,7 @@
 # Features Frontend - TO-DO:
 
 - [ ] Upload Photo (incomplete) - (complete in backend)
+  ![image](https://github.com/user-attachments/assets/d22d3c57-d13b-406f-af8a-be3938b1f6db)
 - [ ] List Families - (complete in backend)
 - [ ] Create a family - (complete in backend)
 - [ ] Join to a family by code (id) - (complete in backend)
