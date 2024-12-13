@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from '@tanstack/react-query'
-import { FolderPlus, Trash2 } from 'lucide-react'
+import { FolderPlus, Plus, Trash2 } from 'lucide-react'
 import { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import VisibilitySensor from 'react-visibility-sensor'
@@ -9,6 +9,7 @@ import { detelePhoto } from '@/api/delete-photo'
 import { getGallery } from '@/api/get-gallery'
 import { ConfirmationDialog } from '@/components/confirmation-dialog'
 import { GridGalleryCard } from '@/components/grid-gallery-card'
+import { ImgUploaderModal } from '@/components/image-uploader/modal-img-uploader'
 import { Dialog } from '@/components/ui/dialog'
 import { queryClient } from '@/lib/react-query'
 import { CLASS_STYLES, QUERY_KEYS } from '@/utils/constants'
@@ -70,6 +71,11 @@ export function Gallery() {
     number | undefined
   >()
 
+  const [imgUploaderModalIsOpen, setImgUploaderModalIsOpen] = useState(false)
+
+  const handleOpenImgUploaderModal = () => setImgUploaderModalIsOpen(true)
+  const handleCloseImgUploaderModal = () => setImgUploaderModalIsOpen(false)
+
   const handleCloseDeletePhotoModal = () => {
     setDeletePhotoModalIsOpen(undefined)
   }
@@ -124,7 +130,16 @@ export function Gallery() {
     <>
       <Helmet title="Gallery" />
       <div className="flex flex-col gap-4">
-        <h1 className="text-3xl font-bold tracking-tighter">Gallery</h1>
+        <div className="flex items-center gap-4">
+          <h1 className="text-3xl font-bold tracking-tighter">Gallery</h1>
+          <div
+            onClick={handleOpenImgUploaderModal}
+            title="Add Photo"
+            className="flex-center flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border-4 border-l-neutral-900 dark:border-l-white"
+          >
+            <Plus height={18} />
+          </div>
+        </div>
         <div className="grid grid-cols-2 gap-1">
           {photos &&
             photos.map(({ id, url, user_id: userId }, index) => (
@@ -174,6 +189,12 @@ export function Gallery() {
           disabled={isPendingDeletion}
           onCloseFn={handleCloseDeletePhotoModal}
           confirmationFn={handleSubmitDeletePhoto}
+        />
+      </Dialog>
+      <Dialog>
+        <ImgUploaderModal
+          isOpen={imgUploaderModalIsOpen}
+          handleCloseModal={handleCloseImgUploaderModal}
         />
       </Dialog>
     </>
