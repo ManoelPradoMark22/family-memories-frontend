@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
+import { FolderPlus, Pencil, Trash2 } from 'lucide-react'
 import { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import VisibilitySensor from 'react-visibility-sensor'
@@ -6,10 +7,23 @@ import VisibilitySensor from 'react-visibility-sensor'
 import { getGallery } from '@/api/get-gallery'
 import { GridGalleryCard } from '@/components/grid-gallery-card'
 import { queryClient } from '@/lib/react-query'
-import { QUERY_KEYS } from '@/utils/constants'
+import { CLASS_STYLES, QUERY_KEYS } from '@/utils/constants'
 import { ILoggedUserIdCache } from '@/utils/types'
 
+interface IHandleOpenAddPhotoToAlbum {
+  photoId: number
+  userId: number
+  url: string
+}
+
+interface IAddPhotoToAlbumModal {
+  isOpen: boolean
+  photoInfo?: IHandleOpenAddPhotoToAlbum
+}
+
 const { GET_USER_ID_LOGGED_IN, GET_PHOTOS_GALLERY } = QUERY_KEYS
+
+const { ACTION_ICON_DROPDOWN_STYLE } = CLASS_STYLES
 
 export function Gallery() {
   const loggedUserId: ILoggedUserIdCache = queryClient.getQueryData(
@@ -31,9 +45,6 @@ export function Gallery() {
     photos ? Array(photos.length).fill(false) : [],
   )
 
-  console.log('photos')
-  console.log(photos)
-
   const imageVisibleChange = (index: number, isVisible: boolean) => {
     if (isVisible) {
       setImagesShownArray((currentImagesShownArray) => {
@@ -44,6 +55,38 @@ export function Gallery() {
     }
   }
 
+  const initialAddPhotoToAlbumState: IAddPhotoToAlbumModal = { isOpen: false }
+
+  const [addPhotoToAlbumModalIsOpen, setAddPhotoToAlbumModalIsOpen] =
+    useState<IAddPhotoToAlbumModal>(initialAddPhotoToAlbumState)
+
+  const [deletePhotoModalIsOpen, setDeletePhotoModalIsOpen] = useState<
+    number | undefined
+  >()
+
+  const handleCloseDeletePhotoModal = () => {
+    setDeletePhotoModalIsOpen(undefined)
+  }
+
+  const handleOpenDeletePhotoModal = (photoId: number) => {
+    setDeletePhotoModalIsOpen(photoId)
+  }
+
+  const handleOpenAddPhotoToAlbum = ({
+    photoId,
+    userId,
+    url,
+  }: IHandleOpenAddPhotoToAlbum) => {
+    setAddPhotoToAlbumModalIsOpen({
+      isOpen: true,
+      photoInfo: {
+        photoId,
+        userId,
+        url,
+      },
+    })
+  }
+
   return (
     <>
       <Helmet title="Gallery" />
@@ -51,7 +94,7 @@ export function Gallery() {
         <h1 className="text-3xl font-bold tracking-tighter">Gallery</h1>
         <div className="grid grid-cols-2 gap-1">
           {photos &&
-            photos.map(({ id, url }, index) => (
+            photos.map(({ id, url, user_id: userId }, index) => (
               <VisibilitySensor
                 key={id}
                 partialVisibility={true}
@@ -63,6 +106,25 @@ export function Gallery() {
                 <GridGalleryCard
                   imageUrl={url}
                   show={imagesShownArray[index]}
+                  actions={[
+                    {
+                      label: 'Add to album',
+                      handleFuntion: () =>
+                        handleOpenAddPhotoToAlbum({
+                          photoId: id,
+                          userId,
+                          url,
+                        }),
+                      icon: (
+                        <FolderPlus className={ACTION_ICON_DROPDOWN_STYLE} />
+                      ),
+                    },
+                    {
+                      label: 'Delete',
+                      handleFuntion: () => handleOpenDeletePhotoModal(id),
+                      icon: <Trash2 className={ACTION_ICON_DROPDOWN_STYLE} />,
+                    },
+                  ]}
                 />
               </VisibilitySensor>
             ))}
