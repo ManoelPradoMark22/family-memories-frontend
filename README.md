@@ -19,7 +19,7 @@
 
 ---
 
-## Features Developed in Frontend
+# Features Developed in Frontend:
 
 - [x] Sign-in
 - [x] Sign-up
@@ -27,6 +27,8 @@
 - [x] List Photos (Gallery)
 - [x] Delete Photo
 - [x] Theme Toggle
+
+# Libs and Technologies:
 
 - [x] React-Query
 - [x] react-hook-form
