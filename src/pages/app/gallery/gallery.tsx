@@ -61,6 +61,8 @@ export function Gallery() {
 
   const initialAddPhotoToAlbumState: IAddPhotoToAlbumModal = { isOpen: false }
 
+  // TODO: create modal: addPhotoToAlbum
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [addPhotoToAlbumModalIsOpen, setAddPhotoToAlbumModalIsOpen] =
     useState<IAddPhotoToAlbumModal>(initialAddPhotoToAlbumState)
 
@@ -107,6 +109,8 @@ export function Gallery() {
 
       toast.dismiss()
       toast.success('Photo successfully deleted!')
+
+      queryClient.invalidateQueries({ queryKey: GET_PHOTOS_GALLERY })
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (e: any) {
