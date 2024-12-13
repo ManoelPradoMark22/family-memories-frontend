@@ -24,9 +24,22 @@
 - [x] Sign-in
 - [x] Sign-up
 - [x] Sign-out
+- [x] Edit Profile
 - [x] List Photos (Gallery)
 - [x] Delete Photo
 - [x] Theme Toggle
+
+# Features Frontend - TO-DO:
+
+- [ ] Upload Photo (incomplete)
+- [ ] List Families
+- [ ] Create a family
+- [ ] Join to a family by code (id)
+- [ ] Join to a family by Qr-code (id)
+- [ ] List Albums
+- [ ] Create an Album
+- [ ] Add Photo to Album
+- [ ] Remove Photo from Album
 
 # Libs and Technologies:
 
