@@ -1,11 +1,12 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
 import { getProfile, IGetProfileResponse } from '@/api/get-profile'
 import { updateProfile } from '@/api/update-profile'
+import { queryClient } from '@/lib/react-query'
 import { QUERY_KEYS } from '@/utils/constants'
 import { ILoggedUserIdCache } from '@/utils/types'
 
@@ -34,8 +35,6 @@ type IStoreProfileDialog = {
 }
 
 export function StoreProfileDialog({ onClose }: IStoreProfileDialog) {
-  const queryClient = useQueryClient()
-
   const loggedUserId: ILoggedUserIdCache = queryClient.getQueryData(
     GET_USER_ID_LOGGED_IN,
   )
@@ -50,6 +49,7 @@ export function StoreProfileDialog({ onClose }: IStoreProfileDialog) {
     ...queryFnToUse,
     enabled: !!loggedUserId?.userId,
   })
+
   const {
     register,
     handleSubmit,
