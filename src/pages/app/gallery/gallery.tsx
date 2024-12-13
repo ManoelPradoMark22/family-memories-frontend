@@ -111,6 +111,7 @@ export function Gallery() {
       toast.success('Photo successfully deleted!')
 
       queryClient.invalidateQueries({ queryKey: GET_PHOTOS_GALLERY })
+      handleCloseDeletePhotoModal()
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (e: any) {
