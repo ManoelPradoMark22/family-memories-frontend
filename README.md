@@ -19,6 +19,30 @@
 
 ---
 
+## Features Developed in Frontend
+
+- [x] Sign-in
+- [x] Sign-up
+- [x] Sign-out
+- [x] List Photos (Gallery)
+- [x] Delete Photo
+- [x] Theme Toggle
+
+- [x] React-Query
+- [x] react-hook-form
+- [x] zod (validations)
+- [x] axios
+- [x] Test Coverage - Jest (some examples)
+- [x] E2E Tests - Playwright (some examples)
+
+- [x] Tailwind (style)
+- [x] Shadcn/ui (componentizing)
+
+- [x] Prettier
+- [x] ESLint
+
+---
+
 - PS.: I tried my best to finish everything in the 3 days I was given to do this challenge, but since I'm still employed at the current company, this was all I could do in that time.
 Note: Since the Photo Upload functionality in the Frontend was not integrated with the Backend in time, it is possible to upload the photo for a user:
 - PS.: tentei ao máximo finalizar tudo nos 3 dias que recebi para fazer esse desafio, mas como ainda estou empregado na atual compania, isso foi tudo que consegui realizar nesse prazo.
