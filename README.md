@@ -21,9 +21,9 @@
 
 # Features Developed in Frontend:
 
-- [x] Sign-in
-- [x] Sign-up
-- [x] Sign-out
+- [x] Sign-in (login)
+- [x] Sign-up (register user)
+- [x] Sign-out (logout)
 - [x] Edit Profile
 - [x] List Photos (Gallery)
 - [x] Delete Photo
