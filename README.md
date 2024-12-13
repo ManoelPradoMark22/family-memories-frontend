@@ -28,6 +28,7 @@
 - [x] List Photos (Gallery)
 - [x] Delete Photo
 - [x] Theme Toggle
+- [x] Responsive application
 
 # Features Frontend - TO-DO:
 
