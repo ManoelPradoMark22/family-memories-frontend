@@ -31,7 +31,7 @@ Note: Since the Photo Upload functionality in the Frontend was not integrated wi
 
 ---
 
-PS.: tentei ao máximo finalizar tudo nos 3 dias que recebi para fazer esse desafio, mas como ainda estou empregado na atual compania, isso foi tudo que consegui realizar nesse prado
+PS.: tentei ao máximo finalizar tudo nos 3 dias que recebi para fazer esse desafio, mas como ainda estou empregado na atual compania, isso foi tudo que consegui realizar nesse prazo.
 Notas: Como no Frontend a funcionalidade de Upload de Photo não foi integrada com o Backend a tempo, é possivel fazer o upload da foto para um usuário:
 
 1. Identifique o id do seu usuário (se não tiver o usuario criado, crie um de exemplo):
