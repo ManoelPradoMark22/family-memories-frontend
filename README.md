@@ -40,15 +40,15 @@
 
 # Features Frontend - TO-DO:
 
-- [ ] Upload Photo (incomplete)
-- [ ] List Families
-- [ ] Create a family
-- [ ] Join to a family by code (id)
+- [ ] Upload Photo (incomplete) - (complete in backend)
+- [ ] List Families - (complete in backend)
+- [ ] Create a family - (complete in backend)
+- [ ] Join to a family by code (id) - (complete in backend)
 - [ ] Join to a family by Qr-code (id)
-- [ ] List Albums
-- [ ] Create an Album
-- [ ] Add Photo to Album
-- [ ] Remove Photo from Album
+- [ ] List Albums - (complete in backend)
+- [ ] Create an Album - (complete in backend)
+- [ ] Add Photo to Album - (complete in backend)
+- [ ] Remove Photo from Album - (complete in backend)
 
 # Libs and Technologies:
 
